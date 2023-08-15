@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 18:42:32 by ojamal            #+#    #+#             */
-/*   Updated: 2023/08/15 19:30:34 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/08/15 19:35:04 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	puterr(char *str, char *arg)
 {
 	while (str && *str)
 		write(2, str++, 1);
-	if (arg && *arg)
+	while (arg && *arg)
 			write(2, arg++, 1);
 	write(2, "\n", 1);
 	return (1);
 }
 
-int execute(char **av, int i, int save_fd, char *env[])
+int execute(char **av, int i, int save_fd, char **env)
 {
 	av[i] = NULL;
 	dup2(save_fd, STDIN_FILENO);
