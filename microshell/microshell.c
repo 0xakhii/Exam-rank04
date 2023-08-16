@@ -6,7 +6,7 @@
 /*   By: ojamal <ojamal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 18:42:32 by ojamal            #+#    #+#             */
-/*   Updated: 2023/08/15 19:35:04 by ojamal           ###   ########.fr       */
+/*   Updated: 2023/08/16 18:31:33 by ojamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int execute(char **av, int i, int save_fd, char **env)
 	dup2(save_fd, STDIN_FILENO);
 	close(save_fd);
 	execve(av[0], av, env);
-	return (puterr("Command not found: ", av[0]));
+	return (puterr("error: cannot execute ", av[0]));
 }
 
 int	main(int ac, char **av, char **env)
@@ -55,7 +55,7 @@ int	main(int ac, char **av, char **env)
 			if (i != 2)
 				puterr("error: cd: bad arguments", NULL);
 			else if (chdir(av[1]) != 0)
-				puterr("error: cd: No such file or directory ", av[1]);
+				puterr("error: cd: cannot change directory to ", av[1]);
 		}
 		else if ((av[i] == NULL || strcmp(av[i], ";") == 0))
 		{
